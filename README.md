@@ -1,5 +1,5 @@
 # Hacker News App
-Mobile application that consumes Hacker News's API
+Mobile application that consumes Hacker News' news API
 
 - compileSdkVersion 28
 - buildToolsVersion 28.0.0
