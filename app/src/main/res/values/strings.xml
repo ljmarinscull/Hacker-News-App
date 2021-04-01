@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">HackerNewsApp</string>
+    <string name="app_name">HackerNews App</string>
+    <string name="endpoint_url">https://hn.algolia.com/</string>
+    <string name="preference_file_key">com.project.hackernews</string>
+    <string name="url_not_valid">Url not valid :(</string>
 </resources>
