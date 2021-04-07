@@ -19,6 +19,8 @@ data class NewObject(
     @SerializedName("title")
     var title: String?
 ) {
+    constructor() : this("","","","","","")
+
     fun titleToShow(): String {
         if(!storyTitle.isNullOrEmpty())
             return storyTitle as String
