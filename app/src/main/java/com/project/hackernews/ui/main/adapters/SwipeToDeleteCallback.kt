@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.project.hackernews.NewsApplication
 
-class SwipeToDeleteCallback(adapter: NewsAdapter) :
+class SwipeToDeleteCallback(listener: SwipeToDelete) :
         ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
-    private val mAdapter: NewsAdapter = adapter
+    private val mListener: SwipeToDelete = listener
     private val background: ColorDrawable = ColorDrawable(Color.RED)
 
     override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
@@ -23,8 +23,7 @@ class SwipeToDeleteCallback(adapter: NewsAdapter) :
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         val position = viewHolder.adapterPosition
 
-        NewsApplication.saveNewsDeletedId(mAdapter.mContext, (viewHolder as NewsAdapter.NewsHolder).mNews.objectID!!)
-        mAdapter.removeItem(position)
+        mListener.onSwiped(viewHolder,position)
     }
 
     override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
@@ -51,4 +50,7 @@ class SwipeToDeleteCallback(adapter: NewsAdapter) :
         c.drawText("Delete", (itemView.right - 256).toFloat(), (itemView.bottom - 72).toFloat(), paint);
     }
 
+    interface SwipeToDelete{
+        fun onSwiped(viewHolder: RecyclerView.ViewHolder, position: Int)
+    }
 }

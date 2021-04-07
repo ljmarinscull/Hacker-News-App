@@ -1,14 +1,9 @@
 package com.project.hackernews.data.backend
 
-import android.annotation.SuppressLint
 import com.project.hackernews.data.database.AppDatabase
 import com.project.hackernews.data.model.NewObject
 import com.project.hackernews.data.model.NewsEntity
 import com.project.hackernews.data.model.toDate
-import com.project.hackernews.utils.KMoment.Companion.dateToLong
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
 
 class NewsDataSource(private val db: AppDatabase) {
 

@@ -13,7 +13,9 @@ import com.project.hackernews.data.database.AppDatabase
 import com.project.hackernews.ui.MainFactory
 import com.project.hackernews.ui.main.MainViewModel
 import com.project.hackernews.databinding.MainActivityBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mainViewModel: MainViewModel
