@@ -1,14 +1,18 @@
 package com.project.hackernews.ui.main
 
 import androidx.lifecycle.*
-import com.project.hackernews.data.backend.NewsRepository
 import com.project.hackernews.data.model.NewObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.project.hackernews.utils.Result
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MainViewModel(private val newsRepository: NewsRepository) : ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val repo: IRepository
+    ) : ViewModel() {
 
     private val _news = MutableLiveData<Result<ArrayList<NewObject>>>()
     val newsLiveData: LiveData<Result<ArrayList<NewObject>>> = _news
@@ -20,7 +24,7 @@ class MainViewModel(private val newsRepository: NewsRepository) : ViewModel() {
                 _news.value = Result.Loading()
                 var finaleResult: Result<ArrayList<NewObject>>? = null
                 withContext(Dispatchers.IO) {
-                    val result = newsRepository.loadNews(isOnline)
+                    val result = repo.loadNews(isOnline)
                     val resultFiltered = result.filter { it.objectID !in deletedIds }
                     finaleResult = Result.Success(ArrayList(resultFiltered))
                 }

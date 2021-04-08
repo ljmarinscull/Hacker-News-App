@@ -2,6 +2,7 @@ package com.project.hackernews
 
 import com.project.hackernews.data.mappers.NewsDataMapper
 import com.project.hackernews.data.model.NewObject
+import com.project.hackernews.data.model.NewsEntity
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -14,7 +15,7 @@ import org.junit.Assert.*
 class ExampleUnitTest {
 
     @Test
-    fun testNewsDataMapper(){
+    fun testNewsDataMapper_Method_Map(){
         val mapper = NewsDataMapper()
         val newsObj = NewObject()
 
@@ -25,5 +26,19 @@ class ExampleUnitTest {
         assertEquals(newsObj.storyTitle, newsEntity.storyTitle)
         assertEquals(newsObj.storyUrl, newsEntity.storyUrl)
         assertEquals(newsObj.title, newsEntity.title)
+    }
+
+    @Test
+    fun testNewsDataMapper_Method_MapReverse(){
+        val mapper = NewsDataMapper()
+        val newsEntity = NewsEntity()
+
+        val newsObject = mapper.mapReverse(newsEntity)
+        assertEquals(newsEntity.author, newsObject.author)
+        assertEquals(newsEntity.createdAt, newsObject.createdAt)
+        assertEquals(newsEntity.objectID, newsObject.objectID)
+        assertEquals(newsEntity.storyTitle, newsObject.storyTitle)
+        assertEquals(newsEntity.storyUrl, newsObject.storyUrl)
+        assertEquals(newsEntity.title, newsObject.title)
     }
 }

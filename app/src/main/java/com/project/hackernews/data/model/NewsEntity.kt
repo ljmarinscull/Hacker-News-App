@@ -29,15 +29,4 @@ data class NewsEntity(
         var title: String?,
 ){
     constructor() : this(0,"","","","","","")
-
-    fun toNew() : NewObject {
-        return NewObject(
-                author = author!!,
-                objectID = objectID!!,
-                storyTitle = storyTitle,
-                storyUrl = storyUrl,
-                createdAt = createdAt!!,
-                title = title
-        )
-    }
 }

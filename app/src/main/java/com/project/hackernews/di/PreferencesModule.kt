@@ -12,7 +12,7 @@ import dagger.hilt.components.SingletonComponent
 abstract class PreferencesModule {
 
     @Binds
-    abstract fun providesIPreferences(
+    abstract fun provideIPreferences(
         appPreference: AppPreferences
     ): IPreferences
 }

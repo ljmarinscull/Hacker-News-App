@@ -9,4 +9,8 @@ class ListMapperImpl<I, O>(
     override fun map(input: List<I>): List<O> {
         return input.map { mapper.map(it) }
     }
+
+    override fun mapReverse(input: List<O>): List<I> {
+        return input.map { mapper.mapReverse(it) }
+    }
 }

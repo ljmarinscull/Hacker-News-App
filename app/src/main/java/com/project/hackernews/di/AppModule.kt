@@ -1,6 +1,7 @@
 package com.project.hackernews.di
 
 import android.content.Context
+import com.project.hackernews.data.backend.BackendService
 import com.project.hackernews.data.database.AppDatabase
 import com.project.hackernews.data.database.NewsEntityDao
 import dagger.Module
@@ -10,9 +11,9 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@InstallIn(SingletonComponent::class)
 @Module
-class DatabaseModule {
+@InstallIn(SingletonComponent::class)
+object AppModule {
 
     @Singleton
     @Provides
@@ -21,12 +22,13 @@ class DatabaseModule {
     }
 
     @Provides
-    fun providePlantDao(appDatabase: AppDatabase): NewsEntityDao {
+    fun provideNewsEntityDao(appDatabase: AppDatabase): NewsEntityDao {
         return appDatabase.newsEntityDao()
     }
 
+    @Singleton
     @Provides
-    fun providenNewsEntityDao(appDatabase: AppDatabase): NewsEntityDao {
-        return appDatabase.newsEntityDao()
+    fun provideBackendService(): BackendService {
+        return BackendService.create()
     }
 }

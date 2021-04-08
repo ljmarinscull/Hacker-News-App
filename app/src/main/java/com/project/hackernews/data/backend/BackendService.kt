@@ -9,7 +9,6 @@ import retrofit2.http.GET
 
 const val BASE_URL = "https://hn.algolia.com/"
 
-@JvmSuppressWildcards
 interface BackendService {
 
     @GET("api/v1/search_by_date?query=mobile")

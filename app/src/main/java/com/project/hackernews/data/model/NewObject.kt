@@ -33,17 +33,6 @@ data class NewObject(
     fun authorAndTimeShow(): String {
         return "$author - ${createdAt?.let { KMoment.getTimeAgo(it) }}"
     }
-
-    fun toNewEntity(): NewsEntity {
-        return NewsEntity(
-              objectID = objectID,
-                author = author,
-                 title = title,
-             createdAt = createdAt,
-            storyTitle = storyTitle,
-              storyUrl = storyUrl,
-        )
-    }
 }
 
 fun String.toDate(): Date {
